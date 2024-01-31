@@ -1,35 +1,49 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { View, Text, TextInput, Image, Pressable, Alert } from "react-native";
+import { useRoute } from "@react-navigation/native";
 
 import Button from "./assets/components/Button";
 
 import { api } from "../service/api";
 import { Loading } from "../components/Loading";
 
-const PassForgot = ({ navigation }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [email, setEmail] = useState("");
+const ValidRecoveryCode = ({ navigation }) => {
+  const route = useRoute();
 
-  const handleForgotPassword = async () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [code, setCode] = useState("");
+
+  const handleValidateCode = async () => {
     try {
+      const email = route.params?.email;
+
       setIsLoading(true);
 
-      if (email) {
-        await api.post("/auth/forgot-password", {
+      if (code) {
+        await api.post("/auth/valid-recovery-code", {
           email,
+          code,
         });
 
         setIsLoading(false);
 
-        navigation.navigate("ValidRecoveryCode", {
+        navigation.navigate("NewPass", {
           email,
+          code,
         });
       }
     } catch (error) {
+      if (error.response.status === 400) {
+        return Alert.alert(
+          "Erro na validação do código",
+          "O código informado é inválido, informe um novo código e tente novamente"
+        );
+      }
+
       Alert.alert(
-        "Erro na busca dos dados",
-        "Algo de errado aconteceu na busca das informações, tente novamente mais tarde"
+        "Erro na validação do código",
+        "Algo de errado aconteceu na validação do código, tente novamente mais tarde"
       );
     } finally {
       setIsLoading(false);
@@ -57,7 +71,7 @@ const PassForgot = ({ navigation }) => {
               color: "#2264C7",
             }}
           >
-            Redefinição de Senha
+            Código de Recuperação
           </Text>
           <View
             style={{
@@ -75,11 +89,10 @@ const PassForgot = ({ navigation }) => {
             }}
           >
             <TextInput
-              placeholder="Email"
+              placeholder="Código de verificação"
               placeholderTextColor="#797B7A"
-              keyboardType="ascii-capable"
-              autoCapitalize="none"
-              onChangeText={(value) => setEmail(value)}
+              keyboardType="number-pad"
+              onChangeText={(value) => setCode(value)}
               style={{
                 width: "100%",
                 height: "100%",
@@ -88,8 +101,8 @@ const PassForgot = ({ navigation }) => {
           </View>
           <View>
             <Button
-              title="Enviar"
-              onPress={handleForgotPassword}
+              title="Validar"
+              onPress={handleValidateCode}
               style={{
                 marginTop: 70,
                 width: 350,
@@ -100,7 +113,7 @@ const PassForgot = ({ navigation }) => {
             />
             <Button
               title="Voltar"
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => navigation.navigate("PassForgot")}
               style={{
                 marginTop: 340,
                 width: 350,
@@ -131,4 +144,4 @@ const PassForgot = ({ navigation }) => {
   );
 };
 
-export default PassForgot;
+export default ValidRecoveryCode;
