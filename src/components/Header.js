@@ -4,7 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { useAuth } from "../hooks/auth";
 
-export const Header = ({ title = "", rightOptions = false }) => {
+export const Header = ({ title = "", rightOptions = false, params }) => {
   const navigation = useNavigation();
   const { user } = useAuth();
 
@@ -47,7 +47,7 @@ export const Header = ({ title = "", rightOptions = false }) => {
 
         <Text
           style={{
-            fontSize: 25,
+            fontSize: 22,
             color: "#2264C7",
             fontWeight: "bold",
             marginLeft: rightOptions ? 0 : -30,
@@ -101,7 +101,13 @@ export const Header = ({ title = "", rightOptions = false }) => {
                       </Text>
 
                       <Pressable
-                        onPress={() => console.log("teste")}
+                        onPress={() => {
+                          navigation.navigate("ReportComments", {
+                            ...params,
+                          });
+
+                          setIsModalVisible(false);
+                        }}
                         style={{
                           flexDirection: "row",
                           alignItems: "center",

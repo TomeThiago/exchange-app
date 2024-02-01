@@ -40,15 +40,19 @@ export default () => {
   }, []);
 
   const handleSaveComment = async () => {
-    const subCategoryId = route.params.subCategoryId;
+    try {
+      const subCategoryId = route.params.subCategoryId;
 
-    await api.post("/comments/create", {
-      subCategoryId,
-      countryId: value,
-      message: text,
-    });
+      await api.post("/comments/create", {
+        subCategoryId,
+        countryId: value,
+        message: text,
+      });
 
-    navigation.goBack();
+      navigation.goBack();
+    } catch (err) {
+      console.log(err.response.data);
+    }
   };
 
   return (

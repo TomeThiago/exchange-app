@@ -10,38 +10,17 @@ import {
   NewPass,
   Profile,
   Info,
-  Portugal,
-  France,
-  Spain,
-  Italy,
-  Germany,
-  Canada,
   Visa,
   Finances,
   Utilities,
   Asurance,
   Contracts,
-  DocComent,
-  DocContacts,
-  TaxComents,
-  DateComents,
-  BankComents,
-  CardComents,
-  AppComents,
-  HouseComents,
-  TransportComents,
-  VantComents,
-  HealthComents,
-  TripComents,
-  LifeComents,
-  CrediComents,
-  TimeComents,
-  EqualComents,
   NewComent,
   CollegesDestiny,
   Comments,
   NewDestiny,
   NewCollege,
+  ReportComments,
 } from "./src/screens";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider } from "./src/hooks/auth";
@@ -118,50 +97,8 @@ export default function App() {
               }}
             />
             <Stack.Screen
-              name="Portugal"
-              component={Portugal}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
               name="CollegesDestiny"
               component={CollegesDestiny}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="France"
-              component={France}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="Spain"
-              component={Spain}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="Italy"
-              component={Italy}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="Germany"
-              component={Germany}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="Canada"
-              component={Canada}
               options={{
                 headerShown: false,
               }}
@@ -202,118 +139,6 @@ export default function App() {
               }}
             />
             <Stack.Screen
-              name="DocComent"
-              component={DocComent}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="DocContacts"
-              component={DocContacts}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="TaxComents"
-              component={TaxComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="DateComents"
-              component={DateComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="BankComents"
-              component={BankComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="CardComents"
-              component={CardComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="AppComents"
-              component={AppComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="HouseComents"
-              component={HouseComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="TransportComents"
-              component={TransportComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="VantComents"
-              component={VantComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="HealthComents"
-              component={HealthComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="TripComents"
-              component={TripComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="LifeComents"
-              component={LifeComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="CrediComents"
-              component={CrediComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="TimeComents"
-              component={TimeComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="EqualComents"
-              component={EqualComents}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
               name="NewComent"
               component={NewComent}
               options={{
@@ -337,6 +162,13 @@ export default function App() {
             <Stack.Screen
               name="NewCollege"
               component={NewCollege}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="ReportComments"
+              component={ReportComments}
               options={{
                 headerShown: false,
               }}

@@ -15,12 +15,12 @@ import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { subCategories } from "./constants/subcategories";
 import { Header } from "../components/Header";
-import { api } from "../service/api";
 import { useFocusEffect } from "@react-navigation/native";
-import { CommentItem } from "../components/CommentItem";
+import { api } from "../service/api";
+import { ReportItem } from "../components/ReportItem";
 
-const Comments = ({ navigation }) => {
-  const [comments, setComments] = useState([]);
+const ReportComments = ({ navigation }) => {
+  const [reports, setReports] = useState([]);
   const [countries, setCountries] = useState([]);
   const [countryChecked, setCountryChecked] = useState(-1);
   const [countrySelected, setCountrySelected] = useState(-1);
@@ -34,23 +34,23 @@ const Comments = ({ navigation }) => {
   async function fetchData() {
     try {
       if (subCategory) {
-        const [responseComments, responseCountries] = await Promise.all([
+        const urlRequest =
           countrySelected && countrySelected > 0
-            ? api.get(
-                `/comments?subCategoryId=${subCategory.id}&countryId=${countrySelected}`
-              )
-            : api.get(`/comments?subCategoryId=${subCategory.id}`),
+            ? `/comments/reports?subCategoryId=${subCategory.id}&countryId=${countrySelected}`
+            : `/comments/reports?subCategoryId=${subCategory.id}`;
+
+        const [responseCountries, responseComments] = await Promise.all([
           api.get("/countries"),
+          api.get(urlRequest),
         ]);
 
-        setComments(responseComments.data);
         setCountries(responseCountries.data);
+        setReports(responseComments.data);
       }
     } catch (error) {
       Alert.alert(
         "Erro na busca dos dados",
-        "Algo de errado aconteceu na busca dos comentários, tente novamente mais tarde",
-        error.message
+        "Algo de errado aconteceu na busca dos comentários, tente novamente mais tarde"
       );
     }
   }
@@ -65,13 +65,7 @@ const Comments = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Header
-        title={subCategory.name}
-        rightOptions
-        params={{
-          subCategoryId: route.params.subCategoryId,
-        }}
-      />
+      <Header title={`${subCategory.name} Denunciados`} />
 
       <View
         style={{
@@ -168,47 +162,11 @@ const Comments = ({ navigation }) => {
       </View>
 
       <ScrollView style={{ flex: 1, paddingHorizontal: 16, marginTop: 8 }}>
-        {comments.map((comment, index) => (
-          <CommentItem key={comment.id} comment={comment} />
+        {reports.map((report, index) => (
+          <ReportItem key={index} comment={report} />
         ))}
       </ScrollView>
 
-      <View
-        style={{
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            width: "90%",
-            height: 48,
-            marginBottom: 10,
-            borderColor: "#CACCCC",
-            backgroundColor: "#F1F5F4",
-            borderWidth: 1,
-            borderRadius: 15,
-            alignItems: "flex-start",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-        >
-          <Pressable
-            style={{
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-            }}
-            onPress={() =>
-              navigation.navigate("NewComent", {
-                subCategoryId: subCategory.id,
-              })
-            }
-          >
-            <Text style={{ marginLeft: 20 }}>Escreva sobre...</Text>
-          </Pressable>
-        </View>
-      </View>
       <View
         style={{
           backgroundColor: "#BED5FF",
@@ -297,4 +255,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Comments;
+export default ReportComments;

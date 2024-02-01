@@ -38,7 +38,6 @@ const Login = ({ navigation }) => {
 
       navigation.navigate("Home");
     } catch (error) {
-      console.log(error.response);
       alert("Usuário ou senha inválidos");
     } finally {
       setIsLoading(false);

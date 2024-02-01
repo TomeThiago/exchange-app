@@ -72,14 +72,10 @@ const NewCollege = ({ navigation }) => {
         });
       }
 
-      console.log(data);
-
       await api.postForm("/college/create", data);
 
       resetForm();
     } catch (error) {
-      console.log(error);
-      console.log(error.response.data);
       Alert.alert(
         "Erro na criação do usuário",
         "Ocorreu um erro na criação do usuário, aguarde e tente novamente mais tarde"

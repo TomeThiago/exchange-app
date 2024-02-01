@@ -71,7 +71,6 @@ const NewDestiny = ({ navigation }) => {
 
       resetForm();
     } catch (error) {
-      console.log(error.response.data);
       Alert.alert(
         "Erro na criação do usuário",
         "Ocorreu um erro na criação do usuário, aguarde e tente novamente mais tarde"
