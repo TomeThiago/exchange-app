@@ -15,24 +15,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.tomethiago.exchangeapp"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.tomethiago.exchangeapp"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "8c59102a-bf5d-4f49-a229-7a79ce9b5ff3"
-      }
-    },
-    "owner": "tomethiago"
+    }
   }
 }
